@@ -2,11 +2,11 @@ package dev.web.crm.dto;
 
 public class CollegueAuth {
     private String email;
-    private String password;
+    private String motDePasse;
 
-    public CollegueAuth(String email, String password) {
+    public CollegueAuth(String email, String motDePasse) {
         this.email = email;
-        this.password = password;
+        this.motDePasse = motDePasse;
     }
 
     public CollegueAuth() {
@@ -20,11 +20,11 @@ public class CollegueAuth {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getMotDePasse() {
+        return motDePasse;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
     }
 }
