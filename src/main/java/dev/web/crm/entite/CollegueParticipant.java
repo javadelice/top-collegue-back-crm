@@ -15,6 +15,7 @@ public class CollegueParticipant {
     private String pictureUrl;
     private int nbPlusRemainingVotes;
     private int nbMinusRemainingVotes;
+    private String status;
     @OneToMany(mappedBy = "collegueElector")
     private Set<Vote> votes;
 
@@ -84,4 +85,22 @@ public class CollegueParticipant {
     public void setNbMinusRemainingVotes(int nbMinusRemainingVotes) {
         this.nbMinusRemainingVotes = nbMinusRemainingVotes;
     }
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Set<Vote> getVotes() {
+		return votes;
+	}
+
+	public void setVotes(Set<Vote> votes) {
+		this.votes = votes;
+	}
+    
+    
 }
