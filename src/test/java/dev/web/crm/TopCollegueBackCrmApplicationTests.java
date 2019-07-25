@@ -1,4 +1,4 @@
-package com.example.demo;
+package dev.web.crm;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
