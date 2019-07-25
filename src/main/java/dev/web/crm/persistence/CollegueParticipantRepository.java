@@ -1,8 +1,19 @@
 package dev.web.crm.persistence;
 
-import dev.web.crm.entite.CollegueParticipant;
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import dev.web.crm.dto.Picture;
+import dev.web.crm.entite.CollegueParticipant;
+
+@Repository
 public interface CollegueParticipantRepository extends JpaRepository<CollegueParticipant,String> {
 
+	Optional<CollegueParticipant> findByMail(String email);
+
+	Picture save(Picture pictureUrl);
+
+	//Picture save(Picture pictureUrl);
 }
