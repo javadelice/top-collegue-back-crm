@@ -48,6 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // un POST /auth n'est pas soumise à authentification
                 .antMatchers(HttpMethod.POST, "/auth").permitAll()
+                .antMatchers(HttpMethod.GET, "/me").permitAll()
                 // accès à la console h2 sans authentification
                 .antMatchers("/h2-console/**").permitAll()
 
