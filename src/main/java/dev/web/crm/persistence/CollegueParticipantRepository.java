@@ -7,9 +7,9 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CollegueParticipantRepository extends JpaRepository<CollegueParticipant,String> {
-	
-	Optional<CollegueParticipant> findByEmail(String email);
-	
+import java.util.Optional;
 
+public interface CollegueParticipantRepository extends JpaRepository<CollegueParticipant,String> {
+
+    public Optional<CollegueParticipant> findByEmail(String email);
 }

@@ -1,8 +1,8 @@
 package dev.web.crm.entite;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import org.springframework.beans.factory.annotation.Value;
+
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -13,21 +13,31 @@ public class CollegueParticipant {
     private String firstName;
     private String lastName;
     private String pictureUrl;
+    @Value("${nb.vote.positive}")
     private int nbPlusRemainingVotes;
+    @Value("${nb.vote.negative}")
     private int nbMinusRemainingVotes;
-    private String status;
     @OneToMany(mappedBy = "collegueElector")
     private Set<Vote> votes;
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "enum('SUSCRIBED', 'SUSCRIBED_CONFIRMED','VOTE_CONFIRMED')")
+    private StatusCollegue status;
 
-    public CollegueParticipant(String email, String password, String firstName, String lastName, String pictureUrl) {
+
+    public CollegueParticipant(String email, String password, String firstName, String lastName, String pictureUrl, StatusCollegue status) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.pictureUrl = pictureUrl;
+        this.status = status;
     }
 
     public CollegueParticipant() {
+    }
+
+    public void setStatus(StatusCollegue status) {
+        this.status = status;
     }
 
     public String getEmail() {
@@ -85,14 +95,6 @@ public class CollegueParticipant {
     public void setNbMinusRemainingVotes(int nbMinusRemainingVotes) {
         this.nbMinusRemainingVotes = nbMinusRemainingVotes;
     }
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
 
 	public Set<Vote> getVotes() {
 		return votes;
