@@ -2,11 +2,8 @@ package dev.web.crm.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.web.crm.entite.CollegueParticipant;
 import dev.web.crm.persistence.CollegueParticipantRepository;
 
 @RestController

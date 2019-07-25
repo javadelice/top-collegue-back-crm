@@ -11,9 +11,8 @@ import dev.web.crm.entite.CollegueParticipant;
 @Repository
 public interface CollegueParticipantRepository extends JpaRepository<CollegueParticipant,String> {
 
-	Optional<CollegueParticipant> findByMail(String email);
+	Optional<CollegueParticipant> findByEmail(String email);
 
 	Picture save(Picture pictureUrl);
 
-	//Picture save(Picture pictureUrl);
 }
