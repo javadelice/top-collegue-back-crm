@@ -33,6 +33,10 @@ public class CollegueParticipant {
         this.status = status;
     }
 
+    public StatusCollegue getStatus() {
+        return status;
+    }
+
     public CollegueParticipant() {
     }
 

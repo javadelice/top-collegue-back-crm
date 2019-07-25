@@ -21,7 +21,7 @@ public class CollegueParticipantService {
 	
 	public CollegueUser chercherParEmail(String email) {
         return collegueParticipantRepository.findByEmail(email)
-                .map(c -> new CollegueUser(c.getFirstName(), c.getLastName(), c.getStatus()))
+                .map(c -> new CollegueUser(c.getFirstName(), c.getLastName(), c.getStatus().toString()))
                 .orElseThrow(() -> new CollegueNonTrouveException());
     }
 	

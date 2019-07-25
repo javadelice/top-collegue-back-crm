@@ -46,10 +46,9 @@ public class AuthController {
     public ResponseEntity<?> authenticate(@RequestBody CollegueAuth infos){
 
         Map<String, Object> infosSupplementaireToken = new HashMap<>();
-        infosSupplementaireToken.put("email", infos.getEmail());
 
         String jetonJWT = Jwts.builder()
-                .setSubject("U")
+                .setSubject(infos.getEmail())
                 .addClaims(infosSupplementaireToken)
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRES_IN * 1000))
                 .signWith(io.jsonwebtoken.SignatureAlgorithm.HS512, SECRET)

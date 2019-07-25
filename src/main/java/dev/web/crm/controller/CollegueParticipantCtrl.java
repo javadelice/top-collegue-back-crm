@@ -25,7 +25,6 @@ public class CollegueParticipantCtrl {
 	@RequestMapping(
             method = RequestMethod.GET, 
             path = "/me")
-
     public CollegueUser recupCollegueFromEmail() {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         CollegueUser collegue = collegueParticipantService.chercherParEmail(email);
