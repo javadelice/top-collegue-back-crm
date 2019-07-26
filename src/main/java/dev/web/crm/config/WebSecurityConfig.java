@@ -45,7 +45,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and()
                 .authorizeRequests()
-
+                // un PATCH /registration non soumis à authentification
+                .antMatchers(HttpMethod.PATCH, "/registration").permitAll()
                 // un POST /auth n'est pas soumise à authentification
                 .antMatchers(HttpMethod.POST, "/auth").permitAll()
                 // accès à la console h2 sans authentification
