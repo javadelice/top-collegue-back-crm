@@ -3,6 +3,8 @@ package dev.web.crm.entite;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,6 +24,8 @@ public class CollegueParticipant {
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "enum('SUSCRIBED', 'SUSCRIBED_CONFIRMED','VOTE_CONFIRMED')")
     private StatusCollegue status;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();
 
 
     public CollegueParticipant(String email, String password, String firstName, String lastName, String pictureUrl, StatusCollegue status) {
@@ -31,6 +35,16 @@ public class CollegueParticipant {
         this.lastName = lastName;
         this.pictureUrl = pictureUrl;
         this.status = status;
+    }
+
+    public CollegueParticipant(String email, String password, String firstName, String lastName, String pictureUrl, StatusCollegue status, List<String> roles) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.pictureUrl = pictureUrl;
+        this.status = status;
+        this.roles = roles;
     }
 
     public StatusCollegue getStatus() {
@@ -107,6 +121,12 @@ public class CollegueParticipant {
 	public void setVotes(Set<Vote> votes) {
 		this.votes = votes;
 	}
-    
-    
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
 }

@@ -16,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,7 +47,7 @@ public class AuthController {
     public ResponseEntity<?> authenticate(@RequestBody CollegueAuth infos){
 
         Map<String, Object> infosSupplementaireToken = new HashMap<>();
-
+        infosSupplementaireToken.put("roles", Arrays.asList("ROLE_USER"));
         String jetonJWT = Jwts.builder()
                 .setSubject(infos.getEmail())
                 .addClaims(infosSupplementaireToken)
@@ -86,7 +87,8 @@ public class AuthController {
                     ResponseEntity<IdentiteCollegue> response = rt.exchange(requestEntity, IdentiteCollegue.class);
                     IdentiteCollegue collegue = response.getBody();
 
-                    collegueParticipantRepository.save(new CollegueParticipant(infos.getEmail(), passwordEncoder.encode(infos.getMotDePasse()), collegue.getPrenoms(), collegue.getNom(), collegue.getPhotoUrl(),StatusCollegue.SUSCRIBED));
+
+                    collegueParticipantRepository.save(new CollegueParticipant(infos.getEmail(), passwordEncoder.encode(infos.getMotDePasse()), collegue.getPrenoms(), collegue.getNom(), collegue.getPhotoUrl(),StatusCollegue.SUSCRIBED, Arrays.asList("ROLE_USER")));
 
                     return ResponseEntity.ok()
                             .header(HttpHeaders.SET_COOKIE, tokenCookie.toString())

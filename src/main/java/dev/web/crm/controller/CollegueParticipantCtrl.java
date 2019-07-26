@@ -1,29 +1,37 @@
 package dev.web.crm.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
 import dev.web.crm.dto.CollegueUser;
+import dev.web.crm.dto.Picture;
 import dev.web.crm.service.CollegueParticipantService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 
-
-@CrossOrigin (allowCredentials = "true")
+@CrossOrigin
 @RestController
-
 public class CollegueParticipantCtrl {
+    @Autowired
+	private CollegueParticipantService collegueParticipantService;
 
-	
-	 @Autowired
-	    private CollegueParticipantService collegueParticipantService;
-	 
-	
+    @Secured("ROLE_USER")
+	@RequestMapping(method = RequestMethod.POST, path = "/registration")
+	public ResponseEntity<?> finaliserInscription(@RequestBody Picture picture) {
+
+		String email = SecurityContextHolder.getContext().getAuthentication().getName();
+
+		collegueParticipantService.finaliserInscription(Optional.ofNullable(picture.getPictureUrl()), email);
+
+        return ResponseEntity.ok().build();
+
+    }
+
+    @Secured("ROLE_USER")
 	@RequestMapping(
-            method = RequestMethod.GET, 
+            method = RequestMethod.GET,
             path = "/me")
     public CollegueUser recupCollegueFromEmail() {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();

@@ -40,7 +40,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
                         String username = body.getSubject();
 
-                        List<String> roles = body.get("status", List.class);
+                        List<String> roles = body.get("roles", List.class);
 
                         List<SimpleGrantedAuthority> authorities = roles
                                 .stream()
