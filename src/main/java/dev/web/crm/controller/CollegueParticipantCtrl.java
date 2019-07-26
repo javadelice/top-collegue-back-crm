@@ -1,5 +1,5 @@
 package dev.web.crm.controller;
-
+import dev.web.crm.dto.CollegueLight;
 import dev.web.crm.dto.CollegueUser;
 import dev.web.crm.dto.Picture;
 import dev.web.crm.service.CollegueParticipantService;
@@ -9,6 +9,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin
@@ -38,4 +39,19 @@ public class CollegueParticipantCtrl {
         CollegueUser collegue = collegueParticipantService.chercherParEmail(email);
         return collegue;
     }
+    
+    @Secured("ROLE_USER")
+    @RequestMapping(
+            method = RequestMethod.GET,
+            path = "/participants"
+            )
+    
+    public List<CollegueLight> getAllColleguesPhotos (){
+    	String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        List<CollegueLight> collegues = collegueParticipantService.lister(email);
+        return collegues;
+    }
+    
+	    
+    
 }

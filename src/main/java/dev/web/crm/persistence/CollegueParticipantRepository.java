@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface CollegueParticipantRepository extends JpaRepository<CollegueParticipant,String> {
 
     public Optional<CollegueParticipant> findByEmail(String email);
+    
+    
 }
