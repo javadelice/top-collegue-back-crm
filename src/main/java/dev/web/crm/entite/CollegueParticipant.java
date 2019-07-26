@@ -33,19 +33,11 @@ public class CollegueParticipant {
         this.status = status;
     }
 
-    public CollegueParticipant() {
-    }
-
-    public Set<Vote> getVotes() {
-        return votes;
-    }
-
-    public void setVotes(Set<Vote> votes) {
-        this.votes = votes;
-    }
-
     public StatusCollegue getStatus() {
         return status;
+    }
+
+    public CollegueParticipant() {
     }
 
     public void setStatus(StatusCollegue status) {
@@ -107,4 +99,14 @@ public class CollegueParticipant {
     public void setNbMinusRemainingVotes(int nbMinusRemainingVotes) {
         this.nbMinusRemainingVotes = nbMinusRemainingVotes;
     }
+
+	public Set<Vote> getVotes() {
+		return votes;
+	}
+
+	public void setVotes(Set<Vote> votes) {
+		this.votes = votes;
+	}
+    
+    
 }
