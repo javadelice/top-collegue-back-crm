@@ -1,15 +1,24 @@
 package dev.web.crm.controller;
 
-import dev.web.crm.dto.CollegueUser;
-import dev.web.crm.dto.Picture;
-import dev.web.crm.service.CollegueParticipantService;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
+import dev.web.crm.dto.CollegueUser;
+import dev.web.crm.dto.Picture;
+import dev.web.crm.entite.CollegueParticipant;
+import dev.web.crm.entite.CollegueScore;
+import dev.web.crm.service.CollegueParticipantService;
 
 @CrossOrigin
 @RestController
@@ -38,4 +47,29 @@ public class CollegueParticipantCtrl {
         CollegueUser collegue = collegueParticipantService.chercherParEmail(email);
         return collegue;
     }
+    
+    /*
+    @Secured("ROLE_USER")
+	@RequestMapping(
+            method = RequestMethod.GET,
+            path = "/result")
+    /*public Optional<CollegueScore> recupererScoreCollegues(int score) {
+		return collegueParticipantService.findByScore(score);
+   
+    }
+    
+    
+    public List<CollegueScore> recupererScoreCollegues() {
+    	List<CollegueParticipant> tousLesScoresCollegues = collegueParticipantService.lister();
+    	
+    	List<CollegueScore> resultats = new ArrayList<CollegueScore>();
+    	
+    	for (CollegueScore collegueScore : resultats) {
+			resultats.add(new CollegueScore(collegueScore.getCollegue(), collegueScore.getScore()));
+		}
+    	
+    	
+        return resultats;
+}
+    */
 }

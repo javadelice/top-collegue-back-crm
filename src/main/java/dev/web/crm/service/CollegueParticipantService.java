@@ -1,16 +1,16 @@
 package dev.web.crm.service;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import dev.web.crm.dto.CollegueUser;
 import dev.web.crm.entite.CollegueParticipant;
 import dev.web.crm.entite.StatusCollegue;
 import dev.web.crm.exception.CollegueNonTrouveException;
 import dev.web.crm.persistence.CollegueParticipantRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class CollegueParticipantService {
@@ -41,7 +41,17 @@ public class CollegueParticipantService {
                 .map(c -> new CollegueUser(c.getFirstName(), c.getLastName(), c.getStatus().toString()))
                 .orElseThrow(CollegueNonTrouveException::new);
     }
+    
+    /*
+    public List<CollegueParticipant> lister() {
+		return collegueParticipantRepository.findAll();
+	}
+	*/
 
-
+    /*
+    public Optional<CollegueScore> findByScore(int score) {
+    	return collegueParticipantRepository.findByScoreOrderByScoreDesc(score);
+    }
+*/
 
 }
